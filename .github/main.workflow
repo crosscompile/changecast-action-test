@@ -12,5 +12,8 @@ action "Publish" {
   needs = "Build"
   uses = "netlify/actions/cli@master"
   args = "deploy --dir=/changecast"
-  secrets = ["NETLIFY_AUTH_TOKEN"]
+  secrets = [
+    "NETLIFY_AUTH_TOKEN",
+    "NETLIFY_SITE_ID",
+  ]
 }
