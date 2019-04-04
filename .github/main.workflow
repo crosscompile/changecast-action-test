@@ -1,8 +1,8 @@
 workflow "Build and Publish ChangeCast" {
   on = "release"
   resolves = [
-    "Publish",
-    "GitHub Action for Zeit",
+    "Publish with Now",
+    "Publish with Netlify",
   ]
 }
 
@@ -11,7 +11,7 @@ action "Build" {
   secrets = ["GITHUB_TOKEN"]
 }
 
-action "Publish" {
+action "Publish with Netlify" {
   needs = "Build"
   uses = "netlify/actions/cli@master"
   args = "deploy --dir=./changecast --prod"
@@ -21,9 +21,9 @@ action "Publish" {
   ]
 }
 
-action "GitHub Action for Zeit" {
+action "Publish with Now" {
   uses = "actions/zeit-now@1.0.0"
   needs = ["Build"]
-  args = "./changecast"
+  args = "./changecast --public"
   secrets = ["ZEIT_TOKEN"]
 }
