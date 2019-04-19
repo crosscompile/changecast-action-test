@@ -7,7 +7,7 @@ workflow "Build and Publish ChangeCast" {
 }
 
 action "Build" {
-  uses = "palmerhq/changecast@feature/github-action"
+  uses = "palmerhq/changecast@master"
   secrets = ["GITHUB_TOKEN"]
 }
 
